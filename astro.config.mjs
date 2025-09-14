@@ -1,4 +1,4 @@
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 // @ts-check
 
 import mdx from '@astrojs/mdx';
@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://example.com',
+  site: 'https://andrewakg.dev',
   integrations: [mdx(), sitemap()],
 
   vite: {

@@ -29,14 +29,14 @@ export const studies = [
   {
     title: 'Udemy Courses',
     institution: 'Udemy',
-    description: 'GraphQL, React, Node.js, TypeScript, Docker, CI/CD, AWS',
+    description:
+      'GraphQL, Terraform, TypeScript, Docker, AWS, Modern JavaScript',
     tags: [
       'GraphQL',
-      'React',
-      'Node.js',
+      'Modern JavaScript',
       'TypeScript',
       'Docker',
-      'CI/CD',
+      'Terraform',
       'AWS',
     ],
   },

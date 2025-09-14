@@ -15,11 +15,12 @@ export const work = [
     company: 'DevGurus',
     region: 'United States (Remote)',
     description: [
-      'Led Development of GameSafe, DCA, and FGI platforms.',
-      'Architected AWS workloads with the Well-Architected Framework using Terraform, CloudFormation, and Serverless Framework.',
-      'Built CI/CD with GitHub Actions and Optimzed Docker Images to make fast, reliable deployments.',
+      'Leading GameSafe App (app for protecting children while playing games online), DCA App (app for learning how to be a good digital citizen through an online platform) and FGI (app that has complex integrations with guns marketplaces)',
+      'Architected Apps on AWS using the AWS Well-Architected Framework utilizing Terraform, CloudFormation and Serverless Framework stack.',
+      'Built CI/CD pipelines with GitHub Actions and Optimzed Docker Images to make fast, reliable deployments.',
       'Integrated unit tests and security scans in cicd pipelines to ensure code quality and compliance.',
-      'Right-sized non-prod infra to reduce costs by ~50% while improving reliability and performance.',
+      'Mentored juniordevelopers on best practices and conducted PR reviews to improve code quality.',
+      'Optimized AWS resource utilization including EC2, ECS and RDS to reduce operational costs by 50% for non production environments while maintaining application reliability.',
     ],
     technologies: [
       'AWS',
@@ -33,6 +34,9 @@ export const work = [
       'CloudFormation',
       'Serverless Framework',
       'GitHub Actions',
+      'Terraform',
+      'Socket.io',
+      'Redis',
       'Node.js',
       'TypeScript',
     ],
@@ -41,8 +45,12 @@ export const work = [
     title: 'Senior Software Engineer',
     company: 'Nodogoro',
     region: 'Cairo, Egypt',
-    description:
-      'Owned backend and infra for StudioShot (AI image generation). Migrated GPU workloads to AWS EC2 for better cost/perf, operated across AWS/GCP, set up pipelines and monitoring, and modernized legacy architecture using native cloud services.',
+    description: [
+      'Led the development of StudioShot App, utilizing AI services to produce professional images from selfie images using Stable Diffusion and ComfyUI tools.',
+      'Managed backend development and maintenance of AWS/GCP components for StudioShot App and optimized cost and performance by transitioning AI GPU workloads to AWS EC2 GPU instances',
+      'Developed internal tools using Retool',
+      'Migrated the old app architecture to a new scalable architecture using AWS and GCP native services.',
+    ],
     technologies: [
       'AWS',
       'GCP',
@@ -50,8 +58,11 @@ export const work = [
       'Stable Diffusion',
       'ComfyUI',
       'S3',
-      'Docker',
+      'Firebase',
+      'Retool',
+      'PostgreSQL',
       'Node.js',
+      'TypeScript',
       'GitHub Actions',
     ],
   },
@@ -59,8 +70,11 @@ export const work = [
     title: 'Professional Services Delivery Engineer',
     company: 'Onica (Rackspace)',
     region: 'Cairo, Egypt',
-    description:
-      'Delivered cloud-native solutions with serverless/event-driven patterns. Built APIs and data flows with Lambda, DynamoDB, Aurora, EventBridge, SNS/SQS; shipped React/Node services; enabled scalable, cost-efficient architectures on AWS.',
+    description: [
+      'Contributed to the successful delivery of two projects: a medical application integrating a Bluetooth-enabled inhaler for patients and a cost simulation tool for underground water pipelines.',
+      'Leveraged React with TypeScript for front-end development and Node.js with TypeScript alongside MongoDB for back-end implementation.',
+      'Employed a cloud-native architecture utilizing the Serverless Framework on AWS, incorporating AWS Lambda functions, DynamoDB, AuroraDB, EventBridge, SNS, and SQS to enable event-driven patterns and efficient event propagation.',
+    ],
     technologies: [
       'AWS',
       'Lambda',
@@ -79,8 +93,10 @@ export const work = [
     title: 'Top Rated Freelancer (Backend/Serverless)',
     company: 'Upwork',
     region: 'Remote',
-    description:
-      'Delivered two production apps end-to-end using a serverless, cloud-first approach. Implemented secure, scalable backends with IaC and automation to accelerate delivery.',
+    description: [
+      'Contributed to the successful delivery of two projects: a freelancing app for home maintenance jobs and a mood app for analyzing user mood according to daily activities.',
+      'Leveraged Node.js with TypeScript alongside AWS with cloud-native approach for back-end implementation using Serverless Framework.',
+    ],
     technologies: [
       'Node.js',
       'TypeScript',
@@ -96,8 +112,10 @@ export const work = [
     title: 'Software Engineer',
     company: 'Callvita, LLC',
     region: 'Cairo, Egypt',
-    description:
-      'Built medical history and doctor appointment products across web and mobile. Implemented REST APIs and CI basics, and deployed on AWS.',
+    description: [
+      'Led app development to store medical history and enable booking doctor appointments.',
+      'Utilized ReactJS for front-end, NodeJS (JavaScript) and Express for backend, React Native for mobile app development, and AWS as the cloud provider.',
+    ],
     technologies: ['React', 'React Native', 'Node.js', 'Express', 'AWS'],
   },
 ];

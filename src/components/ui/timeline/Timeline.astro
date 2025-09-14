@@ -130,7 +130,7 @@ const { items, centered = true } = props;
                           data-item-id={itemId}
                           id={`${itemId}-toggle`}
                         >
-                          Show more...
+                          Show more
                         </button>
                       )}
                     </div>
@@ -217,7 +217,7 @@ const { items, centered = true } = props;
                         data-item-id={itemId}
                         id={`${itemId}-toggle`}
                       >
-                        Show more...
+                        Show more
                       </button>
                     )}
                   </div>
@@ -273,10 +273,10 @@ const { items, centered = true } = props;
       
       if (isHidden) {
         collapsedElement.classList.remove('hidden');
-        toggleButton.textContent = 'Show less...';
+        toggleButton.textContent = 'Show less';
       } else {
         collapsedElement.classList.add('hidden');
-        toggleButton.textContent = 'Show more...';
+        toggleButton.textContent = 'Show more';
       }
     }
   }
