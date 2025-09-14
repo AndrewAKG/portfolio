@@ -1,8 +1,8 @@
 /* Light theme tokens. Applied when an ancestor sets [data-theme="light"] (default) */
-[data-theme="light"] {
-  --accent: #FF7A1A; /* brighter for light */
-  --accent-dark: #EA580C;
-  --accent-rgb: 255, 122, 26;
+[data-theme='light'] {
+  --accent: #e55a00; /* darker orange for light theme */
+  --accent-dark: #ea580c;
+  --accent-rgb: 229, 90, 0;
 
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
@@ -17,7 +17,7 @@
   --popover-foreground: #0f1219;
   --primary: var(--accent);
   --primary-foreground: #ffffff;
-  --secondary: #FFB36B;
+  --secondary: #ffb36b;
   --secondary-foreground: #0f1219;
   --muted: rgb(246, 247, 249);
   --muted-foreground: rgb(96, 115, 159);
@@ -48,5 +48,3 @@
   --input: rgb(229, 233, 240);
   --outline: var(--accent);
 }
-
-

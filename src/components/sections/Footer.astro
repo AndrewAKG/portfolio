@@ -1,5 +1,4 @@
 ---
-const today = new Date();
 import contactIconRaw from "../../assets/icons/contact-icon.svg?raw";
 import Button from "../ui/button/Button.astro";
 
@@ -17,16 +16,13 @@ function sanitizeToWhite(svg: string, size = 18) {
 }
 
 const contactIcon = sanitizeToWhite(contactIconRaw);
-const feedUrl = new URL('rss.xml', Astro.site).toString();
-const feedlyUrl = `https://feedly.com/i/subscription/feed/${feedUrl}`;
-const inoreaderUrl = `https://www.inoreader.com/?add_feed=${feedUrl}`;
 ---
 
 <footer id="contact" class="py-12 px-4 text-center">
   <h2 class="text-2xl md:text-3xl font-semibold text-foreground">Want to Reach Out?</h2>
   <p class="mt-2 text-[color:var(--color-text-muted)]">Let's build something together!</p>
   <div class="mt-6 flex justify-center">
-    <Button href="https://www.linkedin.com/in/andrew-akg/" variant="secondary" size="md" >
+    <Button href="mailto:andrewakram1997@gmail.com" variant="secondary" size="md" >
       <span class="inline-flex items-center mr-2" aria-hidden="true" set:html={contactIcon} />
       Get in touch
     </Button>
