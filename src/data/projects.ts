@@ -1,9 +1,10 @@
-import NodejsIcon from '../assets/logos/nodejs-logo.svg?raw';
-import AWSIcon from '../assets/logos/aws-logo.svg?raw';
-import FirebaseIcon from '../assets/logos/firebase-logo.svg?raw';
-import SocketIoIcon from '../assets/logos/socket.io-logo.svg?raw';
-import JavascriptIcon from '../assets/logos/javascript-logo.svg?raw';
-import ReactIcon from '../assets/logos/react-logo.svg?raw';
+import NodejsIcon from '../assets/logos/Nodejs-logo.svg?raw';
+import AWSIcon from '../assets/logos/AWS-logo.svg?raw';
+import FirebaseIcon from '../assets/logos/Firebase-logo.svg?raw';
+import SocketIoIcon from '../assets/logos/Socket.io-logo.svg?raw';
+import JavascriptIcon from '../assets/logos/JavaScript-logo.svg?raw';
+import ReactIcon from '../assets/logos/React-logo.svg?raw';
+import TypeScriptIcon from '../assets/logos/TypeScript-logo.svg?raw';
 
 export const projects = [
   {
@@ -74,7 +75,7 @@ export const projects = [
       'A medical application integrating a Bluetooth-enabled inhaler with secure, scalable serverless data flows.',
     ctaText: null,
     ctaLink: null,
-    icon: AWSIcon,
+    icon: TypeScriptIcon,
   },
   {
     title: 'Underground Water Pipeline Cost Simulator',
