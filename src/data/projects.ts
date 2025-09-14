@@ -1,9 +1,9 @@
-import TypescriptIcon from '../assets/logos/Typescript-logo.svg?raw';
-import AWSIcon from '../assets/logos/AWS-logo.svg?raw';
-import FirebaseIcon from '../assets/logos/Firebase-logo.svg?raw';
-import SocketIoIcon from '../assets/logos/Socket.io-logo.svg?raw';
-import JavascriptIcon from '../assets/logos/Javascript-logo.svg?raw';
-import ReactIcon from '../assets/logos/React-logo.svg?raw';
+import NodejsIcon from '../assets/logos/nodejs-logo.svg?raw';
+import AWSIcon from '../assets/logos/aws-logo.svg?raw';
+import FirebaseIcon from '../assets/logos/firebase-logo.svg?raw';
+import SocketIoIcon from '../assets/logos/socket.io-logo.svg?raw';
+import JavascriptIcon from '../assets/logos/javascript-logo.svg?raw';
+import ReactIcon from '../assets/logos/react-logo.svg?raw';
 
 export const projects = [
   {
@@ -14,7 +14,7 @@ export const projects = [
       'GameSafe is an app for protecting children while playing games online.',
     ctaText: 'View Project',
     ctaLink: 'https://www.gamesafe.ai/',
-    icon: TypescriptIcon,
+    icon: NodejsIcon,
   },
   {
     title: 'Digital Citizen Academy',
@@ -72,8 +72,8 @@ export const projects = [
       'AWS • Serverless • Lambda • DynamoDB • Aurora • EventBridge • SNS • SQS • React • Node.js • TypeScript • Snowflake',
     description:
       'A medical application integrating a Bluetooth-enabled inhaler with secure, scalable serverless data flows.',
-    ctaText: 'Case Study',
-    ctaLink: '#',
+    ctaText: null,
+    ctaLink: null,
     icon: AWSIcon,
   },
   {
