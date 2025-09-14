@@ -1,11 +1,9 @@
-import avatar from '../assets/images/sample-avatar.jpg';
+import avatar from '../assets/images/profile.jpeg';
 
 export const author = {
-  name: 'Site Author',
+  name: 'Andrew Ghobrial',
   avatar,
-  url: '#',
+  url: 'https://www.linkedin.com/in/andrew-akg/',
 };
 
 export type Author = typeof author;
-
-

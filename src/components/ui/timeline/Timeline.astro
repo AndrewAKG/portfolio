@@ -3,7 +3,7 @@ interface Item {
   title: string;
   company: string;
   region: string;
-  description: string;
+  description: string | string[];
   technologies?: string[];
 }
 
@@ -35,6 +35,28 @@ function normalizeIcon(raw: string): string {
   return s;
 }
 
+function processDescription(description: string | string[]): { bullets: string[], isLong: boolean, hasMore: boolean } {
+  let bullets: string[];
+  
+  if (Array.isArray(description)) {
+    bullets = description;
+  } else {
+    // Split by common sentence endings and filter out empty strings
+    bullets = description
+      .split(/[.!?]+/)
+      .map(bullet => bullet.trim())
+      .filter(bullet => bullet.length > 0)
+      .map(bullet => bullet + '.');
+  }
+  
+  // Consider it "long" if there are more than 3 bullet points or any single bullet is very long
+  const isLong = bullets.length > 3 || bullets.some(bullet => bullet.length > 150);
+  // Only show "Show more" button if there are actually more than 3 bullet points
+  const hasMore = bullets.length > 3;
+  
+  return { bullets, isLong, hasMore };
+}
+
 const props = Astro.props as Props;
 const jobIcon = (props.icons?.job ?? normalizeIcon(jobIconRaw));
 const companyIcon = (props.icons?.company ?? normalizeIcon(companyIconRaw));
@@ -50,6 +72,8 @@ const { items, centered = true } = props;
     <div class="space-y-12">
       {items.map((item, index) => {
         const isLeft = index % 2 === 0;
+        const { bullets, isLong, hasMore } = processDescription(item.description);
+        const itemId = `timeline-item-${index}`;
         return (
           <div class:list={[
             'relative flex items-stretch',
@@ -77,7 +101,51 @@ const { items, centered = true } = props;
                     {item.region}
                   </p>
                 </div>
-                <p class="text-[color:var(--color-text-secondary)] m-0">{item.description}</p>
+                
+                <!-- Description as bullet points -->
+                <div class="text-[color:var(--color-text-secondary)]">
+                  {isLong ? (
+                    <div>
+                      <ul class="list-none space-y-1 m-0">
+                        {bullets.slice(0, 3).map((bullet, bulletIndex) => (
+                          <li class="flex items-start gap-2">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div id={`${itemId}-collapsed`} class="hidden">
+                        <ul class="list-none space-y-1 mt-1">
+                          {bullets.slice(3).map((bullet, bulletIndex) => (
+                            <li class="flex items-start gap-2">
+                              <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      {hasMore && (
+                        <button 
+                          class="mt-2 text-sm text-[var(--accent)] hover:text-[var(--accent)]/80 transition-colors font-medium"
+                          data-item-id={itemId}
+                          id={`${itemId}-toggle`}
+                        >
+                          Show more...
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <ul class="list-none space-y-1 m-0">
+                      {bullets.map((bullet, bulletIndex) => (
+                        <li class="flex items-start gap-2">
+                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                
                 {item.technologies && item.technologies.length > 0 && (
                   <div class="mt-3 flex flex-wrap gap-2">
                     {item.technologies.map((tech) => (
@@ -99,39 +167,118 @@ const { items, centered = true } = props;
     <!-- Left vertical line -->
     <div class="pointer-events-none absolute inset-y-0 left-0 md:left-5 w-px bg-[var(--border)]"></div>
     <div class="space-y-8 md:space-y-12">
-      {items.map((item) => (
-        <div class="relative pl-5 md:pl-16">
-          <div class="absolute left-0 md:left-5 top-3 md:top-4 size-2 md:size-3 rounded-full bg-[var(--accent)] ring-2 md:ring-4 ring-[color:var(--background)]"></div>
-          <div class="card-surface p-4 md:p-6 w-full min-w-0">
-            <div class="mb-2 space-y-1">
-              <h3 class="text-xs leading-snug font-semibold m-0 flex items-center gap-2">
-                <span class="inline-flex" aria-hidden="true" set:html={jobIcon} />
-                {item.title}
-              </h3>
-              <p class="text-sm font-medium text-[color:var(--color-text-muted)] m-0 flex items-center gap-2">
-                <span class="inline-flex" aria-hidden="true" set:html={companyIcon} />
-                {item.company}
-              </p>
-              <p class="text-sm text-[color:var(--color-text-muted)] m-0 flex items-center gap-2">
-                <span class="inline-flex" aria-hidden="true" set:html={locationIcon} />
-                {item.region}
-              </p>
-            </div>
-            <p class="text-[color:var(--color-text-secondary)] m-0">{item.description}</p>
-            {item.technologies && item.technologies.length > 0 && (
-              <div class="mt-3 flex flex-wrap gap-2">
-                {item.technologies.map((tech) => (
-                  <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium" style="background: rgba(var(--accent-rgb),0.1); color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3);">
-                    {tech}
-                  </span>
-                ))}
+      {items.map((item, index) => {
+        const { bullets, isLong, hasMore } = processDescription(item.description);
+        const itemId = `timeline-item-${index}`;
+        return (
+          <div class="relative pl-5 md:pl-16">
+            <div class="absolute left-0 md:left-5 top-3 md:top-4 size-2 md:size-3 rounded-full bg-[var(--accent)] ring-2 md:ring-4 ring-[color:var(--background)]"></div>
+            <div class="card-surface p-4 md:p-6 w-full min-w-0">
+              <div class="mb-2 space-y-1">
+                <h3 class="text-xs leading-snug font-semibold m-0 flex items-center gap-2">
+                  <span class="inline-flex" aria-hidden="true" set:html={jobIcon} />
+                  {item.title}
+                </h3>
+                <p class="text-sm font-medium text-[color:var(--color-text-muted)] m-0 flex items-center gap-2">
+                  <span class="inline-flex" aria-hidden="true" set:html={companyIcon} />
+                  {item.company}
+                </p>
+                <p class="text-sm text-[color:var(--color-text-muted)] m-0 flex items-center gap-2">
+                  <span class="inline-flex" aria-hidden="true" set:html={locationIcon} />
+                  {item.region}
+                </p>
               </div>
-            )}
+              
+              <!-- Description as bullet points -->
+              <div class="text-[color:var(--color-text-secondary)]">
+                {isLong ? (
+                  <div>
+                    <ul class="list-none space-y-1 m-0">
+                      {bullets.slice(0, 3).map((bullet, bulletIndex) => (
+                        <li class="flex items-start gap-2">
+                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div id={`${itemId}-collapsed`} class="hidden">
+                      <ul class="list-none space-y-1 mt-1">
+                        {bullets.slice(3).map((bullet, bulletIndex) => (
+                          <li class="flex items-start gap-2">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {hasMore && (
+                      <button 
+                        class="mt-2 text-sm text-[var(--accent)] hover:text-[var(--accent)]/80 transition-colors font-medium"
+                        data-item-id={itemId}
+                        id={`${itemId}-toggle`}
+                      >
+                        Show more...
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <ul class="list-none space-y-1 m-0">
+                    {bullets.map((bullet, bulletIndex) => (
+                      <li class="flex items-start gap-2">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              
+              {item.technologies && item.technologies.length > 0 && (
+                <div class="mt-3 flex flex-wrap gap-2">
+                  {item.technologies.map((tech) => (
+                    <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium" style="background: rgba(var(--accent-rgb),0.1); color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3);">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 )}
 
+<script>
+  // Use event delegation to handle button clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('click', function(event) {
+      const target = event.target as HTMLElement;
+      if (target && target.hasAttribute('data-item-id')) {
+        const itemId = target.getAttribute('data-item-id');
+        if (itemId) {
+          toggleDescription(itemId);
+        }
+      }
+    });
+  });
+
+  function toggleDescription(itemId: string) {
+    const collapsedElement = document.getElementById(`${itemId}-collapsed`);
+    const toggleButton = document.getElementById(`${itemId}-toggle`);
+    
+    if (collapsedElement && toggleButton) {
+      const isHidden = collapsedElement.classList.contains('hidden');
+      
+      if (isHidden) {
+        collapsedElement.classList.remove('hidden');
+        toggleButton.textContent = 'Show less...';
+      } else {
+        collapsedElement.classList.add('hidden');
+        toggleButton.textContent = 'Show more...';
+      }
+    }
+  }
+</script>
 
