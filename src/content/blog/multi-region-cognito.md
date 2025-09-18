@@ -1,10 +1,10 @@
 ---
 title: '🧠 Cognito in Multi-Region AWS Architectures — What’s the Right Approach?'
 description: 'Cognito is AWS’s managed authentication service, but it comes with a critical limitation: user pools are region-bound. In this post, I explore why this matters in multi-region designs and the approaches you can take to solve it.'
-pubDate: 2025-09-17
+pubDate: 2025-08-17
 author: 'Andrew Ghobrial'
-category: 'Authentication'
-heroImage: '../../assets/images/multi-region-cognito.jpeg'
+category: 'Multi-Region Authentication'
+heroImage: '../../assets/images/multi-region-cognito.png'
 tags:
   [
     'AWS',
