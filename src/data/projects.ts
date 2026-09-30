@@ -8,6 +8,16 @@ import TypeScriptIcon from '../assets/logos/TypeScript-logo.svg?raw';
 
 export const projects = [
   {
+    title: 'Flowla',
+    techStack:
+      'AWS • NestJS • TypeScript • Bun • Terraform • ECS • Lambda • EventBridge • OpenTelemetry • Vercel AI Gateway • Salesforce • Attio • Slack API • GitHub Actions',
+    description:
+      'Digital sales room platform; built AI content pipelines, Attio and Salesforce integrations, SOC 2 hardening, and OpenTelemetry observability.',
+    ctaText: 'View Project',
+    ctaLink: 'https://www.flowla.com/',
+    icon: TypeScriptIcon,
+  },
+  {
     title: 'GameSafe',
     techStack:
       'AWS • Node.js • TypeScript • PostgreSQL • Firebase • Socket.io • CloudFormation • Serverless Framework • S3 • Lambda • SQS • SNS • ECS • RDS • EC2',
