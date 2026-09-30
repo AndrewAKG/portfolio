@@ -106,21 +106,15 @@ const { items, centered = true } = props;
                 <div class="text-[color:var(--color-text-secondary)]">
                   {isLong ? (
                     <div>
-                      <ul class="list-none space-y-1 m-0">
+                      <ul class="list-disc pl-5 space-y-1 marker:text-[var(--accent)] m-0">
                         {bullets.slice(0, 3).map((bullet, bulletIndex) => (
-                          <li class="flex items-start gap-2">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
-                            <span>{bullet}</span>
-                          </li>
+                          <li class="pl-1">{bullet}</li>
                         ))}
                       </ul>
                       <div id={`${itemId}-collapsed`} class="hidden">
-                        <ul class="list-none space-y-1 mt-1">
+                        <ul class="list-disc pl-5 space-y-1 marker:text-[var(--accent)] mt-1">
                           {bullets.slice(3).map((bullet, bulletIndex) => (
-                            <li class="flex items-start gap-2">
-                              <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
-                              <span>{bullet}</span>
-                            </li>
+                            <li class="pl-1">{bullet}</li>
                           ))}
                         </ul>
                       </div>
@@ -135,12 +129,9 @@ const { items, centered = true } = props;
                       )}
                     </div>
                   ) : (
-                    <ul class="list-none space-y-1 m-0">
+                    <ul class="list-disc pl-5 space-y-1 marker:text-[var(--accent)] m-0">
                       {bullets.map((bullet, bulletIndex) => (
-                        <li class="flex items-start gap-2">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
-                          <span>{bullet}</span>
-                        </li>
+                        <li class="pl-1">{bullet}</li>
                       ))}
                     </ul>
                   )}
@@ -165,14 +156,14 @@ const { items, centered = true } = props;
 ) : (
     <div class="relative mx-auto max-w-5xl px-0 md:px-0">
     <!-- Left vertical line -->
-    <div class="pointer-events-none absolute inset-y-0 left-0 md:left-5 w-px bg-[var(--border)]"></div>
+    <div class="pointer-events-none absolute inset-y-0 left-0 md:left-5 w-px -translate-x-1/2 bg-[var(--border)]"></div>
     <div class="space-y-8 md:space-y-12">
       {items.map((item, index) => {
         const { bullets, isLong, hasMore } = processDescription(item.description);
         const itemId = `timeline-item-${index}`;
         return (
           <div class="relative pl-5 md:pl-16">
-            <div class="absolute left-0 md:left-5 top-3 md:top-4 size-2 md:size-3 rounded-full bg-[var(--accent)] ring-2 md:ring-4 ring-[color:var(--background)]"></div>
+            <div class="absolute left-0 md:left-5 top-6 md:top-9 size-2.5 md:size-3 -translate-x-1/2 rounded-full bg-[var(--accent)] ring-4 ring-[color:var(--color-bg-primary)]"></div>
             <div class="card-surface p-4 md:p-6 w-full min-w-0">
               <div class="mb-2 space-y-1">
                 <h3 class="text-xs leading-snug font-semibold m-0 flex items-center gap-2">
@@ -193,21 +184,15 @@ const { items, centered = true } = props;
               <div class="text-[color:var(--color-text-secondary)]">
                 {isLong ? (
                   <div>
-                    <ul class="list-none space-y-1 m-0">
+                    <ul class="list-disc pl-5 space-y-1 marker:text-[var(--accent)] m-0">
                       {bullets.slice(0, 3).map((bullet, bulletIndex) => (
-                        <li class="flex items-start gap-2">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
-                          <span>{bullet}</span>
-                        </li>
+                        <li class="pl-1">{bullet}</li>
                       ))}
                     </ul>
                     <div id={`${itemId}-collapsed`} class="hidden">
-                      <ul class="list-none space-y-1 mt-1">
+                      <ul class="list-disc pl-5 space-y-1 marker:text-[var(--accent)] mt-1">
                         {bullets.slice(3).map((bullet, bulletIndex) => (
-                          <li class="flex items-start gap-2">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
-                            <span>{bullet}</span>
-                          </li>
+                          <li class="pl-1">{bullet}</li>
                         ))}
                       </ul>
                     </div>
@@ -222,12 +207,9 @@ const { items, centered = true } = props;
                     )}
                   </div>
                 ) : (
-                  <ul class="list-none space-y-1 m-0">
+                  <ul class="list-disc pl-5 space-y-1 marker:text-[var(--accent)] m-0">
                     {bullets.map((bullet, bulletIndex) => (
-                      <li class="flex items-start gap-2">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0"></span>
-                        <span>{bullet}</span>
-                      </li>
+                      <li class="pl-1">{bullet}</li>
                     ))}
                   </ul>
                 )}

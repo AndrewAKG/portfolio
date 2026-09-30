@@ -9,7 +9,6 @@
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-md);
-  backdrop-filter: saturate(140%) blur(6px);
   transition: box-shadow 250ms ease, transform 200ms ease;
 }
 
