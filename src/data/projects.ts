@@ -1,10 +1,34 @@
-import NodejsIcon from '../assets/logos/Nodejs-logo.svg?raw';
-import AWSIcon from '../assets/logos/AWS-logo.svg?raw';
-import FirebaseIcon from '../assets/logos/Firebase-logo.svg?raw';
-import SocketIoIcon from '../assets/logos/Socket.io-logo.svg?raw';
-import JavascriptIcon from '../assets/logos/JavaScript-logo.svg?raw';
-import ReactIcon from '../assets/logos/React-logo.svg?raw';
-import TypeScriptIcon from '../assets/logos/TypeScript-logo.svg?raw';
+const logoFiles = Object.fromEntries(
+  Object.entries(
+    import.meta.glob<string>('../assets/logos/*.svg', {
+      eager: true,
+      query: '?raw',
+      import: 'default',
+    }),
+  ).map(([path, svg]) => [path.toLowerCase(), svg]),
+);
+
+// Case-insensitive lookup (socket.io file name casing differs between git and disk);
+// strip any XML prolog/doctype so the SVG can be inlined.
+const logo = (file: string, name: string) => ({
+  name,
+  svg: logoFiles[`../assets/logos/${file}-logo.svg`.toLowerCase()].replace(
+    /^[\s\S]*?(?=<svg)/,
+    '',
+  ),
+});
+
+const TS = logo('TypeScript', 'TypeScript');
+const JS = logo('JavaScript', 'JavaScript');
+const Node = logo('Nodejs', 'Node.js');
+const AWS = logo('AWS', 'AWS');
+const GCP = logo('GoogleCloud', 'Google Cloud');
+const Firebase = logo('Firebase', 'Firebase');
+const Postgres = logo('Postgres', 'PostgreSQL');
+const Mongo = logo('MongoDB', 'MongoDB');
+const React = logo('React', 'React');
+const SocketIO = logo('socket.io', 'Socket.io');
+const GHA = logo('GitHubActions', 'GitHub Actions');
 
 export const projects = [
   {
@@ -15,7 +39,7 @@ export const projects = [
       'Digital sales room platform; built AI content pipelines, Attio and Salesforce integrations, SOC 2 hardening, and OpenTelemetry observability.',
     ctaText: 'View Project',
     ctaLink: 'https://www.flowla.com/',
-    icon: TypeScriptIcon,
+    icons: [TS, Node, AWS, GHA],
   },
   {
     title: 'GameSafe',
@@ -25,7 +49,7 @@ export const projects = [
       'GameSafe is an app for protecting children while playing games online.',
     ctaText: 'View Project',
     ctaLink: 'https://www.gamesafe.ai/',
-    icon: NodejsIcon,
+    icons: [TS, AWS, Postgres, Firebase, SocketIO],
   },
   {
     title: 'Digital Citizen Academy',
@@ -35,7 +59,7 @@ export const projects = [
       'An online platform that teaches kids to be good digital citizens with safe, structured content and tracking.',
     ctaText: 'View Project',
     ctaLink: 'https://dcakids.org',
-    icon: SocketIoIcon,
+    icons: [TS, AWS, Mongo, Firebase, SocketIO],
   },
   {
     title: 'GunSync',
@@ -45,7 +69,7 @@ export const projects = [
       'A platform with complex integrations to firearm-related marketplaces, orchestrating listings and data sync.',
     ctaText: 'View Project',
     ctaLink: 'https://gunsync.com/',
-    icon: AWSIcon,
+    icons: [TS, Node, AWS, Postgres],
   },
   {
     title: 'StudioShot',
@@ -55,7 +79,7 @@ export const projects = [
       'AI service that turns selfies into professional images; migrated GPU workloads to EC2 for better cost/perf.',
     ctaText: 'View Project',
     ctaLink: 'https://studioshot.ai/',
-    icon: FirebaseIcon,
+    icons: [Node, AWS, GCP, Firebase],
   },
   {
     title: 'Home Maintenance App',
@@ -65,7 +89,7 @@ export const projects = [
       'Freelancing marketplace for home maintenance jobs, delivered with a cloud-native, serverless backend.',
     ctaText: null,
     ctaLink: null,
-    icon: JavascriptIcon,
+    icons: [TS, Node, AWS],
   },
   {
     title: 'Mood Tracking App',
@@ -75,7 +99,7 @@ export const projects = [
       'Mobile app analyzing user mood based on daily activities, backed by event-driven serverless APIs.',
     ctaText: null,
     ctaLink: null,
-    icon: JavascriptIcon,
+    icons: [TS, Node, AWS],
   },
   {
     title: 'Medical App with Bluetooth Inhaler',
@@ -85,7 +109,7 @@ export const projects = [
       'A medical application integrating a Bluetooth-enabled inhaler with secure, scalable serverless data flows.',
     ctaText: null,
     ctaLink: null,
-    icon: TypeScriptIcon,
+    icons: [TS, React, Node, AWS],
   },
   {
     title: 'Underground Water Pipeline Cost Simulator',
@@ -95,7 +119,7 @@ export const projects = [
       'Cost simulation tool for underground water pipelines, delivered with a cloud-native architecture.',
     ctaText: null,
     ctaLink: null,
-    icon: ReactIcon,
+    icons: [TS, React, Mongo, AWS],
   },
   {
     title: 'Medical History & Doctor Booking',
@@ -104,6 +128,6 @@ export const projects = [
       'End-to-end product for storing medical history and booking doctor appointments across web and mobile.',
     ctaText: null,
     ctaLink: null,
-    icon: JavascriptIcon,
+    icons: [JS, React, Node, AWS],
   },
 ];
